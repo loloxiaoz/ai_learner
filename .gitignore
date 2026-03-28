@@ -1,0 +1,29 @@
+# ===== Next.js 构建产物 =====
+web/.next/
+web/out/
+web/build/
+web/next-env.d.ts
+web/tsconfig.tsbuildinfo
+
+# ===== 依赖 =====
+web/node_modules/
+
+# ===== 环境变量 =====
+web/.env
+web/.env.local
+web/.env.*.local
+.env
+.env.local
+
+# ===== 编辑器 / IDE =====
+.vscode/
+.idea/
+.obsidian/
+*.swp
+*.swo
+
+# ===== 系统文件 =====
+.DS_Store
+.DS_Store?
+Thumbs.db
+._*
