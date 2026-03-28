@@ -46,34 +46,57 @@ export default function VisualizePage() {
             </div>
           </Link>
 
-          {/* 占位：后续动画 */}
-          {[
-            { icon: "⟳", title: "反向传播梯度流动", tags: ["梯度下降", "链式法则", "权重更新"], coming: true },
-            { icon: "⊞", title: "RAG 检索增强全流程", tags: ["向量检索", "文档召回", "增强生成"], coming: true },
-          ].map(({ icon, title, tags }) => (
-            <div
-              key={title}
-              className="p-6 rounded-xl border opacity-50"
-              style={{ borderColor: "var(--color-border)", backgroundColor: "var(--color-surface)" }}
-            >
-              <div className="flex items-start gap-4">
-                <div className="text-2xl shrink-0" style={{ color: "var(--color-text-muted)" }}>{icon}</div>
-                <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    <h2 className="font-semibold" style={{ color: "var(--color-text)" }}>{title}</h2>
-                    <span className="text-xs px-2 py-0.5 rounded" style={{ backgroundColor: "var(--color-surface-2)", color: "var(--color-text-muted)" }}>即将上线</span>
-                  </div>
-                  <div className="flex gap-2 mt-2">
-                    {tags.map((tag) => (
-                      <span key={tag} className="text-xs px-2 py-0.5 rounded" style={{ backgroundColor: "var(--color-surface-2)", color: "var(--color-text-muted)" }}>
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+          <Link
+            href="/visualize/backprop"
+            className="p-6 rounded-xl border transition-all hover:border-purple-500/50 hover:bg-white/[0.02] group"
+            style={{ borderColor: "var(--color-border)", backgroundColor: "var(--color-surface)" }}
+          >
+            <div className="flex items-start gap-4">
+              <div className="text-2xl shrink-0" style={{ color: "var(--color-accent)" }}>⟳</div>
+              <div>
+                <h2 className="font-semibold mb-1" style={{ color: "var(--color-text)" }}>反向传播梯度流动</h2>
+                <p className="text-sm mb-3" style={{ color: "var(--color-text-muted)" }}>
+                  逐步演示前向传播、损失计算、链式法则求导到权重更新的完整过程，悬停查看每个连接的梯度数值
+                </p>
+                <div className="flex gap-2">
+                  {["梯度下降", "链式法则", "权重更新"].map((tag) => (
+                    <span key={tag} className="text-xs px-2 py-0.5 rounded" style={{ backgroundColor: "rgba(124,109,250,0.12)", color: "var(--color-accent)" }}>
+                      {tag}
+                    </span>
+                  ))}
                 </div>
               </div>
+              <span className="ml-auto text-sm opacity-0 group-hover:opacity-100 transition-opacity shrink-0" style={{ color: "var(--color-accent)" }}>
+                进入 →
+              </span>
             </div>
-          ))}
+          </Link>
+
+          <Link
+            href="/visualize/rag"
+            className="p-6 rounded-xl border transition-all hover:border-purple-500/50 hover:bg-white/[0.02] group"
+            style={{ borderColor: "var(--color-border)", backgroundColor: "var(--color-surface)" }}
+          >
+            <div className="flex items-start gap-4">
+              <div className="text-2xl shrink-0" style={{ color: "var(--color-accent)" }}>⊞</div>
+              <div>
+                <h2 className="font-semibold mb-1" style={{ color: "var(--color-text)" }}>RAG 检索增强全流程</h2>
+                <p className="text-sm mb-3" style={{ color: "var(--color-text-muted)" }}>
+                  可视化向量空间中的语义检索，逐步演示 Embedding → 相似度检索 → 上下文增强 → LLM 生成的完整 RAG 链路
+                </p>
+                <div className="flex gap-2">
+                  {["向量检索", "文档召回", "增强生成"].map((tag) => (
+                    <span key={tag} className="text-xs px-2 py-0.5 rounded" style={{ backgroundColor: "rgba(124,109,250,0.12)", color: "var(--color-accent)" }}>
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <span className="ml-auto text-sm opacity-0 group-hover:opacity-100 transition-opacity shrink-0" style={{ color: "var(--color-accent)" }}>
+                进入 →
+              </span>
+            </div>
+          </Link>
         </div>
       </div>
     </div>

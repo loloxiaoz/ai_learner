@@ -79,6 +79,65 @@ export default async function ChapterPage({ params }: { params: Promise<{ chapte
               dangerouslySetInnerHTML={{ __html: htmlContent }}
             />
 
+            {/* 章节配套可视化入口 */}
+            {slug === "02" && (
+              <Link
+                href="/visualize/backprop"
+                className="flex items-center gap-4 mt-10 p-5 rounded-xl border transition-all hover:border-purple-500/50 hover:bg-white/[0.02] group"
+                style={{ borderColor: "var(--color-border)", backgroundColor: "var(--color-surface)" }}
+              >
+                <div className="text-2xl shrink-0" style={{ color: "var(--color-accent)" }}>⟳</div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-xs mb-1" style={{ color: "var(--color-text-muted)" }}>配套交互可视化</div>
+                  <div className="font-semibold text-sm" style={{ color: "var(--color-text)" }}>反向传播梯度流动</div>
+                  <div className="text-xs mt-0.5" style={{ color: "var(--color-text-muted)" }}>
+                    逐步演示前向传播 → 损失计算 → 链式求导 → 权重更新
+                  </div>
+                </div>
+                <span className="text-sm opacity-0 group-hover:opacity-100 transition-opacity shrink-0" style={{ color: "var(--color-accent)" }}>
+                  进入可视化 →
+                </span>
+              </Link>
+            )}
+            {slug === "03" && (
+              <Link
+                href="/visualize/attention"
+                className="flex items-center gap-4 mt-10 p-5 rounded-xl border transition-all hover:border-purple-500/50 hover:bg-white/[0.02] group"
+                style={{ borderColor: "var(--color-border)", backgroundColor: "var(--color-surface)" }}
+              >
+                <div className="text-2xl shrink-0" style={{ color: "var(--color-accent)" }}>◎</div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-xs mb-1" style={{ color: "var(--color-text-muted)" }}>配套交互可视化</div>
+                  <div className="font-semibold text-sm" style={{ color: "var(--color-text)" }}>Transformer 自注意力机制</div>
+                  <div className="text-xs mt-0.5" style={{ color: "var(--color-text-muted)" }}>
+                    悬停探索注意力热图，切换多头视角，感受 Q/K/V 如何捕捉语言依存关系
+                  </div>
+                </div>
+                <span className="text-sm opacity-0 group-hover:opacity-100 transition-opacity shrink-0" style={{ color: "var(--color-accent)" }}>
+                  进入可视化 →
+                </span>
+              </Link>
+            )}
+            {slug === "09" && (
+              <Link
+                href="/visualize/rag"
+                className="flex items-center gap-4 mt-10 p-5 rounded-xl border transition-all hover:border-purple-500/50 hover:bg-white/[0.02] group"
+                style={{ borderColor: "var(--color-border)", backgroundColor: "var(--color-surface)" }}
+              >
+                <div className="text-2xl shrink-0" style={{ color: "var(--color-accent)" }}>⊞</div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-xs mb-1" style={{ color: "var(--color-text-muted)" }}>配套交互可视化</div>
+                  <div className="font-semibold text-sm" style={{ color: "var(--color-text)" }}>RAG 检索增强生成全流程</div>
+                  <div className="text-xs mt-0.5" style={{ color: "var(--color-text-muted)" }}>
+                    可视化向量空间语义检索，演示 Embedding → 检索 → 增强 → 生成完整链路
+                  </div>
+                </div>
+                <span className="text-sm opacity-0 group-hover:opacity-100 transition-opacity shrink-0" style={{ color: "var(--color-accent)" }}>
+                  进入可视化 →
+                </span>
+              </Link>
+            )}
+
             <div className="flex gap-4 mt-16 pt-8 border-t" style={{ borderColor: "var(--color-border)" }}>
               {prev ? (
                 <Link
