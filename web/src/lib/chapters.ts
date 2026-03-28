@@ -26,6 +26,12 @@ export interface AdjacentChapters {
   next?: Chapter;
 }
 
+export interface Heading {
+  id: string;
+  text: string;
+  level: 2 | 3;
+}
+
 const CHAPTER_DIRS = [
   "01_AI基础与发展脉络",
   "02_深度学习核心原理",
@@ -94,6 +100,10 @@ function resolveChapterLink(rawHref: string): string | null {
   return null;
 }
 
+function slugify(text: string): string {
+  return text.trim().toLowerCase().replace(/\s+/g, "-").replace(/[^\w\u4e00-\u9fff-]/g, "");
+}
+
 function rehypeRewritePaths(slug: string) {
   return () => (tree: unknown) => {
     visit(tree as Parameters<typeof visit>[0], "element", (node: Element) => {
@@ -106,6 +116,14 @@ function rehypeRewritePaths(slug: string) {
       if (node.tagName === "a" && node.properties?.href) {
         const rewritten = resolveChapterLink(String(node.properties.href));
         if (rewritten) node.properties.href = rewritten;
+      }
+      if ((node.tagName === "h2" || node.tagName === "h3") && !node.properties?.id) {
+        const text = node.children
+          .filter((c) => c.type === "text")
+          .map((c) => (c as { value: string }).value)
+          .join("");
+        node.properties = node.properties ?? {};
+        node.properties.id = slugify(text);
       }
     });
   };
@@ -136,4 +154,19 @@ export async function getChapterQuizContent(slug: string): Promise<string> {
   if (!chapter) throw new Error(`Chapter not found: ${slug}`);
   const raw = fs.readFileSync(path.join(CONTENT_ROOT, chapter.dirName, FILE_QUIZ), "utf-8");
   return markdownToHtml(raw, slug);
+}
+
+export function getChapterHeadings(slug: string): Heading[] {
+  const chapter = getChapterBySlug(slug);
+  if (!chapter) return [];
+  const raw = fs.readFileSync(path.join(CONTENT_ROOT, chapter.dirName, FILE_CONTENT), "utf-8");
+  const { content } = matter(raw);
+  const headings: Heading[] = [];
+  for (const line of content.split("\n")) {
+    const m2 = line.match(/^## (.+)/);
+    if (m2) { headings.push({ id: slugify(m2[1]), text: m2[1].trim(), level: 2 }); continue; }
+    const m3 = line.match(/^### (.+)/);
+    if (m3) { headings.push({ id: slugify(m3[1]), text: m3[1].trim(), level: 3 }); }
+  }
+  return headings;
 }
