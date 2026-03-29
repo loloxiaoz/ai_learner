@@ -138,18 +138,18 @@ function VectorSpace({
           <line
             x1={PAD + v * (VIS_W - PAD * 2)} y1={PAD}
             x2={PAD + v * (VIS_W - PAD * 2)} y2={VIS_H - PAD}
-            stroke="rgba(255,255,255,0.05)" strokeWidth={1}
+            stroke="rgba(0,0,0,0.06)" strokeWidth={1}
           />
           <line
             x1={PAD} y1={VIS_H - PAD - v * (VIS_H - PAD * 2)}
             x2={VIS_W - PAD} y2={VIS_H - PAD - v * (VIS_H - PAD * 2)}
-            stroke="rgba(255,255,255,0.05)" strokeWidth={1}
+            stroke="rgba(0,0,0,0.06)" strokeWidth={1}
           />
         </g>
       ))}
       {/* 坐标轴 */}
-      <line x1={PAD} y1={VIS_H - PAD} x2={VIS_W - PAD} y2={VIS_H - PAD} stroke="rgba(255,255,255,0.15)" strokeWidth={1} />
-      <line x1={PAD} y1={PAD} x2={PAD} y2={VIS_H - PAD} stroke="rgba(255,255,255,0.15)" strokeWidth={1} />
+      <line x1={PAD} y1={VIS_H - PAD} x2={VIS_W - PAD} y2={VIS_H - PAD} stroke="rgba(0,0,0,0.12)" strokeWidth={1} />
+      <line x1={PAD} y1={PAD} x2={PAD} y2={VIS_H - PAD} stroke="rgba(0,0,0,0.12)" strokeWidth={1} />
       <text x={VIS_W - PAD} y={VIS_H - PAD + 14} textAnchor="end" style={{ fontSize: "0.55rem", fill: "var(--color-text-muted)" }}>dim₁</text>
       <text x={PAD - 4} y={PAD} textAnchor="end" style={{ fontSize: "0.55rem", fill: "var(--color-text-muted)" }}>dim₂</text>
 
@@ -161,7 +161,7 @@ function VectorSpace({
           <line
             key={`line-${doc.id}`}
             x1={q.x} y1={q.y} x2={pos.x} y2={pos.y}
-            stroke={isRelevant ? "rgba(124,109,250,0.5)" : "rgba(255,255,255,0.06)"}
+            stroke={isRelevant ? "rgba(124,109,250,0.5)" : "rgba(0,0,0,0.05)"}
             strokeWidth={isRelevant ? 1.5 : 1}
             strokeDasharray={isRelevant ? "none" : "4,3"}
           />

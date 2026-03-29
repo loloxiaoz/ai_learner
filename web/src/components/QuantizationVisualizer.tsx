@@ -159,7 +159,7 @@ export default function QuantizationVisualizer() {
         <div className="flex items-center gap-4 mb-3">
           <p className="text-xs" style={{ color: "var(--color-text-muted)" }}>权重分布：原始 vs 量化后</p>
           <div className="flex gap-3 ml-auto text-xs">
-            <div className="flex items-center gap-1"><div className="w-3 h-0.5" style={{ backgroundColor: "rgba(255,255,255,0.3)" }} />原始 FP32</div>
+            <div className="flex items-center gap-1"><div className="w-3 h-0.5" style={{ backgroundColor: "rgba(0,0,0,0.18)" }} />原始 FP32</div>
             <div className="flex items-center gap-1"><div className="w-3 h-0.5" style={{ backgroundColor: fmt.color }} />{selectedFormat}</div>
           </div>
         </div>
@@ -178,7 +178,7 @@ export default function QuantizationVisualizer() {
             const x = HPAD_L + i * barW;
             const h = (bin.count / maxCount) * (HIST_H - HPAD_T - HPAD_B);
             const y = HIST_H - HPAD_B - h;
-            return <rect key={i} x={x} y={y} width={barW - 0.5} height={h} fill="rgba(255,255,255,0.15)" />;
+            return <rect key={i} x={x} y={y} width={barW - 0.5} height={h} fill="rgba(0,0,0,0.1)" />;
           })}
           {/* 量化后直方图 */}
           {quantHist.map((bin, i) => {
@@ -188,12 +188,12 @@ export default function QuantizationVisualizer() {
             return <rect key={i} x={x} y={y} width={barW - 0.5} height={h} fill={fmt.color + "66"} />;
           })}
           {/* X 轴 */}
-          <line x1={HPAD_L} y1={HIST_H - HPAD_B} x2={HIST_W - HPAD_R} y2={HIST_H - HPAD_B} stroke="rgba(255,255,255,0.15)" strokeWidth={1} />
+          <line x1={HPAD_L} y1={HIST_H - HPAD_B} x2={HIST_W - HPAD_R} y2={HIST_H - HPAD_B} stroke="rgba(0,0,0,0.12)" strokeWidth={1} />
           {[-2, 0, 2].map((v) => {
             const x = histX(Math.max(MIN_W, Math.min(MAX_W, v)));
             return (
               <g key={v}>
-                <line x1={x} y1={HIST_H - HPAD_B} x2={x} y2={HIST_H - HPAD_B + 3} stroke="rgba(255,255,255,0.2)" strokeWidth={1} />
+                <line x1={x} y1={HIST_H - HPAD_B} x2={x} y2={HIST_H - HPAD_B + 3} stroke="rgba(0,0,0,0.15)" strokeWidth={1} />
                 <text x={x} y={HIST_H - 4} textAnchor="middle" style={{ fontSize: "0.5rem", fill: "var(--color-text-muted)" }}>{v}</text>
               </g>
             );

@@ -164,16 +164,16 @@ export default function ActivationVisualizer() {
           {/* 网格 */}
           {xTicks.map((tx) => {
             const { sx } = toSvg(tx, 0);
-            return <line key={`gx${tx}`} x1={sx} y1={PAD_T} x2={sx} y2={H - PAD_B} stroke="rgba(255,255,255,0.05)" strokeWidth={1} />;
+            return <line key={`gx${tx}`} x1={sx} y1={PAD_T} x2={sx} y2={H - PAD_B} stroke="rgba(0,0,0,0.06)" strokeWidth={1} />;
           })}
           {yTicks.map((ty) => {
             const { sy } = toSvg(0, ty);
-            return <line key={`gy${ty}`} x1={PAD_L} y1={sy} x2={W - PAD_R} y2={sy} stroke={ty === 0 ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.05)"} strokeWidth={ty === 0 ? 1.5 : 1} />;
+            return <line key={`gy${ty}`} x1={PAD_L} y1={sy} x2={W - PAD_R} y2={sy} stroke={ty === 0 ? "rgba(0,0,0,0.12)" : "rgba(0,0,0,0.06)"} strokeWidth={ty === 0 ? 1.5 : 1} />;
           })}
           {/* 坐标轴 */}
           {(() => { const { sy } = toSvg(0, 0); const { sx } = toSvg(0, 0); return (<>
-            <line x1={PAD_L} y1={sy} x2={W - PAD_R} y2={sy} stroke="rgba(255,255,255,0.2)" strokeWidth={1} />
-            <line x1={sx} y1={PAD_T} x2={sx} y2={H - PAD_B} stroke="rgba(255,255,255,0.2)" strokeWidth={1} />
+            <line x1={PAD_L} y1={sy} x2={W - PAD_R} y2={sy} stroke="rgba(0,0,0,0.15)" strokeWidth={1} />
+            <line x1={sx} y1={PAD_T} x2={sx} y2={H - PAD_B} stroke="rgba(0,0,0,0.15)" strokeWidth={1} />
           </>); })()}
           {/* 刻度标签 */}
           {xTicks.map((tx) => {
@@ -188,7 +188,7 @@ export default function ActivationVisualizer() {
           {/* 悬停竖线 */}
           {hoverX !== null && (() => {
             const { sx } = toSvg(hoverX, 0);
-            return <line x1={sx} y1={PAD_T} x2={sx} y2={H - PAD_B} stroke="rgba(255,255,255,0.2)" strokeWidth={1} strokeDasharray="3,3" />;
+            return <line x1={sx} y1={PAD_T} x2={sx} y2={H - PAD_B} stroke="rgba(0,0,0,0.15)" strokeWidth={1} strokeDasharray="3,3" />;
           })()}
 
           {/* 激活函数曲线 */}

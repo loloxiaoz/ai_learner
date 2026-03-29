@@ -4,7 +4,7 @@ import { getAdjacentChapters, getAllChapters, getChapterBySlug, getChapterConten
 import MarkReadButton from "@/components/MarkReadButton";
 import TableOfContents from "@/components/TableOfContents";
 import ChapterSidebar from "@/components/ChapterSidebar";
-import "highlight.js/styles/github-dark.css";
+import "highlight.js/styles/github.css";
 
 export async function generateStaticParams() {
   return getAllChapters().map((c) => ({ chapter: c.slug }));

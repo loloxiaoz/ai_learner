@@ -164,7 +164,7 @@ export default function BackpropVisualizer() {
             const to = getNeuronPos(w.to);
             const isHovered = hoveredWeight === w.id;
             const showGrad = (showOutputGrad && w.to === "o0") || (showHiddenGrad && w.to !== "o0");
-            const color = showGrad ? gradColor(w.gradient) : "rgba(255,255,255,0.08)";
+            const color = showGrad ? gradColor(w.gradient) : "rgba(0,0,0,0.06)";
             const strokeW = isHovered ? 3.5 : showGrad ? 2 : 1.2;
 
             return (

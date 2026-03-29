@@ -225,7 +225,7 @@ export default function WordEmbeddingVisualizer() {
             const ph = toSvg(hovered.x, hovered.y);
             const pn = toSvg(nw.x, nw.y);
             return (
-              <line key={nb} x1={ph.sx} y1={ph.sy} x2={pn.sx} y2={pn.sy} stroke="rgba(255,255,255,0.15)" strokeWidth={1} strokeDasharray="3,3" />
+              <line key={nb} x1={ph.sx} y1={ph.sy} x2={pn.sx} y2={pn.sy} stroke="rgba(0,0,0,0.12)" strokeWidth={1} strokeDasharray="3,3" />
             );
           })}
 

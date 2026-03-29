@@ -287,11 +287,11 @@ function CurveMode({ peMatrix }: { peMatrix: number[][] }) {
           {/* 网格 */}
           {[-1, 0, 1].map((yv) => {
             const sy = CPT + ((1 - (yv + 1) / 2)) * (CURVE_H - CPT - CPB);
-            return <line key={yv} x1={CPL} y1={sy} x2={CURVE_W - CPR} y2={sy} stroke={yv === 0 ? "rgba(255,255,255,0.15)" : "rgba(255,255,255,0.05)"} strokeWidth={1} />;
+            return <line key={yv} x1={CPL} y1={sy} x2={CURVE_W - CPR} y2={sy} stroke={yv === 0 ? "rgba(0,0,0,0.12)" : "rgba(0,0,0,0.06)"} strokeWidth={1} />;
           })}
           {[0, 8, 16, 24, 31].map((px) => {
             const sx = CPL + (px / (SEQ_LEN - 1)) * (CURVE_W - CPL - CPR);
-            return <line key={px} x1={sx} y1={CPT} x2={sx} y2={CURVE_H - CPB} stroke="rgba(255,255,255,0.05)" strokeWidth={1} />;
+            return <line key={px} x1={sx} y1={CPT} x2={sx} y2={CURVE_H - CPB} stroke="rgba(0,0,0,0.06)" strokeWidth={1} />;
           })}
           {/* 轴 */}
           {[0, 8, 16, 24, 31].map((px) => {

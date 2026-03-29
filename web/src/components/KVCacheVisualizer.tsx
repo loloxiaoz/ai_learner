@@ -19,7 +19,7 @@ const SEQUENCES = [
 // 颜色
 const COLOR_COMPUTE = "rgba(249,115,22,0.85)";    // 橙：当前正在计算
 const COLOR_CACHED  = "rgba(52,211,153,0.6)";     // 绿：从缓存读取
-const COLOR_PENDING = "rgba(255,255,255,0.05)";   // 灰：还未生成
+const COLOR_PENDING = "rgba(0,0,0,0.04)";   // 灰：还未生成
 const COLOR_WASTED  = "rgba(248,113,113,0.5)";    // 红：重复计算（无 cache 的浪费）
 
 const CELL = 30, GAP = 2;

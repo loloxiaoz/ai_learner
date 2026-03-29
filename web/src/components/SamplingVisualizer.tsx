@@ -251,7 +251,7 @@ export default function SamplingVisualizer() {
                       ? "rgba(86,212,179,0.8)"
                       : active
                         ? "rgba(124,109,250,0.65)"
-                        : "rgba(255,255,255,0.06)"
+                        : "rgba(0,0,0,0.05)"
                   }
                   style={{ transition: "width 0.3s ease" }}
                 />

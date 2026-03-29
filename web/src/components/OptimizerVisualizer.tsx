@@ -232,8 +232,8 @@ export default function OptimizerVisualizer() {
             />
           ))}
           {/* 坐标轴 */}
-          <line x1={PAD} y1={H - PAD} x2={W - PAD} y2={H - PAD} stroke="rgba(255,255,255,0.1)" strokeWidth={1} />
-          <line x1={PAD} y1={PAD} x2={PAD} y2={H - PAD} stroke="rgba(255,255,255,0.1)" strokeWidth={1} />
+          <line x1={PAD} y1={H - PAD} x2={W - PAD} y2={H - PAD} stroke="rgba(0,0,0,0.1)" strokeWidth={1} />
+          <line x1={PAD} y1={PAD} x2={PAD} y2={H - PAD} stroke="rgba(0,0,0,0.1)" strokeWidth={1} />
           {/* 全局最小值标记 */}
           {(() => { const { sx, sy } = toSvg(0, 0); return (
             <g>
@@ -243,7 +243,7 @@ export default function OptimizerVisualizer() {
           ); })()}
           {/* 起始点 */}
           {(() => { const { sx, sy } = toSvg(START.x, START.y); return (
-            <circle cx={sx} cy={sy} r={5} fill="rgba(255,255,255,0.6)" stroke="rgba(255,255,255,0.9)" strokeWidth={1.5} />
+            <circle cx={sx} cy={sy} r={5} fill="rgba(0,0,0,0.18)" stroke="rgba(0,0,0,0.5)" strokeWidth={1.5} />
           ); })()}
           {/* 优化器轨迹 */}
           {ALL_OPTIMIZERS.filter((n) => enabled.has(n)).map((name) => {
@@ -261,7 +261,7 @@ export default function OptimizerVisualizer() {
           {/* 图例 */}
           {(() => {
             const { sx, sy } = toSvg(START.x, START.y);
-            return <text x={sx + 7} y={sy - 6} style={{ fontSize: "0.6rem", fill: "rgba(255,255,255,0.5)" }}>起点</text>;
+            return <text x={sx + 7} y={sy - 6} style={{ fontSize: "0.6rem", fill: "rgba(0,0,0,0.5)" }}>起点</text>;
           })()}
         </svg>
       </div>

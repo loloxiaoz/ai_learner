@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getAdjacentChapters, getAllChapters, getChapterBySlug, getChapterQuizContent } from "@/lib/chapters";
 import QuizAssessment from "@/components/QuizAssessment";
-import "highlight.js/styles/github-dark.css";
+import "highlight.js/styles/github.css";
 
 export async function generateStaticParams() {
   return getAllChapters().map((c) => ({ chapter: c.slug }));

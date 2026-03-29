@@ -139,7 +139,7 @@ export default function TransformerFlowVisualizer() {
                     <line
                       x1={SVG_W / 2} y1={y - 20}
                       x2={SVG_W / 2} y2={y}
-                      stroke={isPast || isActive ? s.color : "rgba(255,255,255,0.1)"}
+                      stroke={isPast || isActive ? s.color : "rgba(0,0,0,0.1)"}
                       strokeWidth={2}
                       strokeDasharray={isPast ? "none" : "4,3"}
                     />
@@ -158,8 +158,8 @@ export default function TransformerFlowVisualizer() {
                     x={BOX_X} y={y}
                     width={BOX_W} height={BOX_H}
                     rx={8}
-                    fill={isActive ? s.color + "22" : "rgba(255,255,255,0.03)"}
-                    stroke={isActive ? s.color : isPast ? s.color + "66" : "rgba(255,255,255,0.12)"}
+                    fill={isActive ? s.color + "22" : "rgba(0,0,0,0.02)"}
+                    stroke={isActive ? s.color : isPast ? s.color + "66" : "rgba(0,0,0,0.1)"}
                     strokeWidth={isActive ? 2 : 1}
                   />
                   {/* 层名称 */}
@@ -179,7 +179,7 @@ export default function TransformerFlowVisualizer() {
                     [{s.dim}]
                   </text>
                   {/* 数字步骤 */}
-                  <circle cx={BOX_X - 14} cy={y + BOX_H / 2} r={9} fill={isActive ? s.color : "rgba(255,255,255,0.06)"} />
+                  <circle cx={BOX_X - 14} cy={y + BOX_H / 2} r={9} fill={isActive ? s.color : "rgba(0,0,0,0.05)"} />
                   <text x={BOX_X - 14} y={y + BOX_H / 2 + 4} textAnchor="middle" style={{ fontSize: "0.55rem", fill: isActive ? "white" : "var(--color-text-muted)" }}>{i + 1}</text>
                 </g>
               );
@@ -206,7 +206,7 @@ export default function TransformerFlowVisualizer() {
             </p>
             <div
               className="text-xs px-3 py-2 rounded-lg"
-              style={{ backgroundColor: "rgba(255,255,255,0.04)", color: "var(--color-text-muted)", borderLeft: `3px solid ${step.color}` }}
+              style={{ backgroundColor: "rgba(0,0,0,0.03)", color: "var(--color-text-muted)", borderLeft: `3px solid ${step.color}` }}
             >
               {step.detail}
             </div>

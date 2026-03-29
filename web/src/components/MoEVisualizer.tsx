@@ -152,7 +152,7 @@ export default function MoEVisualizer() {
         <svg width={SVG_W} height={SVG_H} style={{ display: "block", margin: "0 auto" }}>
           <defs>
             <marker id="arr" markerWidth="5" markerHeight="5" refX="2.5" refY="2.5" orient="auto">
-              <path d="M0,0 L5,2.5 L0,5 Z" fill="rgba(255,255,255,0.3)" />
+              <path d="M0,0 L5,2.5 L0,5 Z" fill="rgba(0,0,0,0.18)" />
             </marker>
             <marker id="arrG" markerWidth="5" markerHeight="5" refX="2.5" refY="2.5" orient="auto">
               <path d="M0,0 L5,2.5 L0,5 Z" fill="rgba(52,211,153,0.8)" />
@@ -181,8 +181,8 @@ export default function MoEVisualizer() {
                 {/* 专家框 */}
                 <rect
                   x={x} y={y} width={EXP_W} height={EXP_H} rx={6}
-                  fill={isActive ? exp.color + "20" : "rgba(255,255,255,0.03)"}
-                  stroke={isActive ? exp.color : "rgba(255,255,255,0.08)"}
+                  fill={isActive ? exp.color + "20" : "rgba(0,0,0,0.02)"}
+                  stroke={isActive ? exp.color : "rgba(0,0,0,0.06)"}
                   strokeWidth={isActive ? 2 : 1}
                 />
                 {/* 专家名称 */}
@@ -197,7 +197,7 @@ export default function MoEVisualizer() {
                 {/* 分数 */}
                 {(isActive || showAll) && (
                   <text x={x + EXP_W / 2} y={y + 40} textAnchor="middle"
-                    style={{ fontSize: "0.5rem", fill: isActive ? exp.color : "rgba(255,255,255,0.2)", fontFamily: "monospace" }}>
+                    style={{ fontSize: "0.5rem", fill: isActive ? exp.color : "rgba(0,0,0,0.13)", fontFamily: "monospace" }}>
                     {(score * 100).toFixed(0)}%{isActive ? (rank === 0 ? " ★" : " ✓") : ""}
                   </text>
                 )}
@@ -266,7 +266,7 @@ export default function MoEVisualizer() {
             <p className="mb-2" style={{ color: "var(--color-text-muted)" }}>{desc}</p>
             <div className="flex gap-1 mb-1">
               {Array.from({ length: total }, (_, i) => (
-                <div key={i} className="flex-1 h-3 rounded" style={{ backgroundColor: i < activated ? color : "rgba(255,255,255,0.08)" }} />
+                <div key={i} className="flex-1 h-3 rounded" style={{ backgroundColor: i < activated ? color : "rgba(0,0,0,0.06)" }} />
               ))}
             </div>
             <div className="font-mono mt-1" style={{ color }}>激活 {activated}/{total} 专家</div>
