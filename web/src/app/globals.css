@@ -151,6 +151,14 @@ body {
   box-shadow: 0 2px 12px rgba(0,0,0,0.08);
 }
 
+/* ── 可视化页面 ─────────────────────────────────────────────────── */
+/* 与课程正文字号保持一致（body 17px） */
+.viz-page p,
+.viz-page .viz-desc {
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
 /* ── 进度条动画 ─────────────────────────────────────────────────── */
 @keyframes progress-fill {
   from { width: 0%; }

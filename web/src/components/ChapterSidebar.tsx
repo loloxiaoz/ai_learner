@@ -17,7 +17,7 @@ export default function ChapterSidebar({ chapters, currentSlug }: Props) {
       className="sticky top-14 shrink-0 self-start border-r transition-all duration-300"
       style={{
         width: collapsed ? 48 : 220,
-        height: "calc(100vh - 3.5rem)",
+        maxHeight: "calc(100vh - 3.5rem)",
         borderColor: "var(--color-border)",
         backgroundColor: "var(--color-surface)",
         overflowY: collapsed ? "visible" : "auto",

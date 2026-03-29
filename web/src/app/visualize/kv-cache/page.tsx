@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function KVCachePage() {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "var(--color-background)" }}>
+    <div className="min-h-screen viz-page" style={{ backgroundColor: "var(--color-background)" }}>
       <nav
         className="sticky top-0 z-10 border-b px-6 py-3 flex items-center justify-between"
         style={{ borderColor: "var(--color-border)", backgroundColor: "var(--color-surface)" }}

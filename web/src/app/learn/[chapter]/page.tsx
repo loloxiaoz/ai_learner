@@ -58,12 +58,12 @@ export default async function ChapterPage({ params }: { params: Promise<{ chapte
       </nav>
 
       {/* 三栏主体 */}
-      <div className="flex flex-1 overflow-hidden">
+      <div className="flex flex-1">
         {/* 左：课程导航 */}
         <ChapterSidebar chapters={allChapters} currentSlug={slug} />
 
         {/* 中：正文 */}
-        <main className="flex-1 overflow-y-auto min-w-0">
+        <main className="flex-1 min-w-0">
           <div className="max-w-4xl mx-auto px-10 py-12">
             <div className="mb-10">
               <div className="text-sm font-mono mb-3" style={{ color: "var(--color-accent)" }}>
@@ -286,11 +286,15 @@ export default async function ChapterPage({ params }: { params: Promise<{ chapte
         {/* 右：章节内目录 */}
         {headings.length > 0 && (
           <aside
-            className="hidden xl:block shrink-0 border-l overflow-y-auto"
+            className="hidden xl:block shrink-0 border-l"
             style={{
               width: 220,
-              height: "calc(100vh - 3.5rem)",
               borderColor: "var(--color-border)",
+              position: "sticky",
+              top: "3.5rem",
+              alignSelf: "flex-start",
+              maxHeight: "calc(100vh - 3.5rem)",
+              overflowY: "auto",
               padding: "1.5rem 1rem",
             }}
           >

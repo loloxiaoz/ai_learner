@@ -10,9 +10,7 @@ export default function TableOfContents({ headings }: { headings: Heading[] }) {
   useEffect(() => {
     if (headings.length === 0) return;
 
-    // 正文滚动容器是 <main>，用它作为 IntersectionObserver 的 root
-    const scrollRoot = document.querySelector("main") ?? null;
-
+    // 整页滚动，用 viewport（null）作为 root
     observerRef.current = new IntersectionObserver(
       (entries) => {
         const visible = entries
@@ -20,7 +18,7 @@ export default function TableOfContents({ headings }: { headings: Heading[] }) {
           .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
         if (visible.length > 0) setActiveId(visible[0].target.id);
       },
-      { root: scrollRoot, rootMargin: "0px 0px -60% 0px", threshold: 0 }
+      { root: null, rootMargin: "0px 0px -60% 0px", threshold: 0 }
     );
 
     headings.forEach(({ id }) => {
@@ -45,9 +43,9 @@ export default function TableOfContents({ headings }: { headings: Heading[] }) {
           onClick={(e) => {
             e.preventDefault();
             const el = document.getElementById(h.id);
-            const main = document.querySelector("main");
-            if (el && main) {
-              main.scrollTo({ top: el.offsetTop - 80, behavior: "smooth" });
+            if (el) {
+              const top = el.getBoundingClientRect().top + window.scrollY - 80;
+              window.scrollTo({ top, behavior: "smooth" });
             }
             setActiveId(h.id);
           }}

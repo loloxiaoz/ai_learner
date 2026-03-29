@@ -138,7 +138,7 @@ const CARDS: VizCard[] = [
 
 export default function VisualizePage() {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "var(--color-background)" }}>
+    <div className="min-h-screen viz-page" style={{ backgroundColor: "var(--color-background)" }}>
       <nav className="border-b px-6 py-3 flex items-center gap-2 text-sm" style={{ borderColor: "var(--color-border)", backgroundColor: "var(--color-surface)", color: "var(--color-text-muted)" }}>
         <Link href="/" className="hover:text-white transition-colors">AI Learner</Link>
         <span>/</span>
