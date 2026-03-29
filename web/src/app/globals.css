@@ -21,11 +21,11 @@ body {
   line-height: 1.7;
 }
 
-/* ── 代码高亮（亮色背景用 github 主题，已在 page.tsx import） ── */
+/* ── 代码高亮（有语言标注的块：语法高亮样式） ── */
 .hljs {
-  background: #f6f8fa !important;
-  border: 1px solid #ddddf0;
-  border-radius: 0.5rem;
+  background: #f3f2ff !important;
+  border: none;
+  border-radius: 0;
   color: #24292e;
 }
 
@@ -70,21 +70,66 @@ body {
   border: 1px solid #c5ede6;
 }
 
+/* ─── pre 公共基础 ─────────────────────────────────────────────── */
 .prose pre {
-  background: #f6f8fa;
-  border: 1px solid #ddddf0;
-  border-radius: 0.75rem;
-  padding: 1.25em 1.5em;
+  position: relative;
   overflow-x: auto;
-  margin: 1.5em 0;
+  margin: 1.75em 0;
+  border-radius: 0.75rem;
+  font-size: 0.875em;
+  line-height: 1.45;          /* ASCII 树形线保持连续 */
 }
 
 .prose pre code {
+  display: block;
   background: none;
   padding: 0;
-  color: inherit;
-  font-size: 0.875em;
   border: none;
+  line-height: inherit;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+}
+
+/* ─── 无语言标注：公式 / 树形图 / 流程说明 → 「说明卡片」风格 ── */
+.prose pre code:not([class]) {
+  color: #2d2d44;
+  background: linear-gradient(135deg, #f7f6ff 0%, #f0f0fc 100%);
+  border: 1px solid #d4d0f8;
+  border-left: 4px solid #6c5ce7;
+  border-radius: 0 0.75rem 0.75rem 0;
+  padding: 1.1em 1.4em;
+  font-size: 0.9em;
+}
+
+/* ─── 有语言标注（Python/yaml/json…）→ 代码编辑器风格 ─────────── */
+.prose pre code[class] {
+  color: #24292e;
+  background: #f3f2ff;
+  border: 1px solid #d4d0f8;
+  border-top: 3px solid #6c5ce7;
+  border-radius: 0.75rem;
+  padding: 1.25em 1.5em;
+}
+
+/* 语言标签角标（通过 data-language 属性，需 rehype 插件注入） */
+/* 暂用伪元素 + CSS attr() 从父 pre 的 class 推断 — 见下方方案 */
+.prose pre:has(code.language-python)::before { content: "Python"; }
+.prose pre:has(code.language-bash)::before   { content: "Shell"; }
+.prose pre:has(code.language-yaml)::before   { content: "YAML"; }
+.prose pre:has(code.language-json)::before   { content: "JSON"; }
+.prose pre:has(code[class])::before {
+  position: absolute;
+  top: 0;
+  right: 1rem;
+  padding: 0.15em 0.65em;
+  background: #6c5ce7;
+  color: white;
+  font-size: 0.65rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  border-radius: 0 0 0.4rem 0.4rem;
+  text-transform: uppercase;
+  line-height: 1.8;
 }
 
 .prose ul {
