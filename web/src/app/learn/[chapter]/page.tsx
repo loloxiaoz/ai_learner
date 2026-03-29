@@ -81,17 +81,64 @@ export default async function ChapterPage({ params }: { params: Promise<{ chapte
 
             {/* 章节配套可视化入口 */}
             {slug === "02" && (
+              <div className="mt-10 space-y-3">
+                <div className="text-xs font-medium mb-1" style={{ color: "var(--color-text-muted)" }}>配套交互可视化</div>
+                {[
+                  { href: "/visualize/backprop", icon: "⟳", title: "反向传播梯度流动", desc: "逐步演示前向传播 → 损失计算 → 链式求导 → 权重更新" },
+                  { href: "/visualize/optimizer", icon: "◈", title: "梯度下降优化器对比", desc: "在 2D 损失曲面上对比 SGD / Momentum / RMSProp / Adam 收敛轨迹" },
+                  { href: "/visualize/activation", icon: "ƒ", title: "激活函数与梯度消失", desc: "对比 Sigmoid / ReLU / GELU 函数曲线及导数，直观理解梯度消失" },
+                ].map(({ href, icon, title, desc }) => (
+                  <Link
+                    key={href}
+                    href={href}
+                    className="flex items-center gap-4 p-4 rounded-xl border transition-all hover:border-purple-500/50 hover:bg-white/[0.02] group"
+                    style={{ borderColor: "var(--color-border)", backgroundColor: "var(--color-surface)" }}
+                  >
+                    <div className="text-xl shrink-0" style={{ color: "var(--color-accent)" }}>{icon}</div>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-semibold text-sm" style={{ color: "var(--color-text)" }}>{title}</div>
+                      <div className="text-xs mt-0.5" style={{ color: "var(--color-text-muted)" }}>{desc}</div>
+                    </div>
+                    <span className="text-sm opacity-0 group-hover:opacity-100 transition-opacity shrink-0" style={{ color: "var(--color-accent)" }}>进入 →</span>
+                  </Link>
+                ))}
+              </div>
+            )}
+            {slug === "03" && (
+              <div className="mt-10 space-y-3">
+                <div className="text-xs font-medium mb-1" style={{ color: "var(--color-text-muted)" }}>配套交互可视化</div>
+                {[
+                  { href: "/visualize/attention", icon: "◎", title: "Transformer 自注意力机制", desc: "悬停探索注意力热图，切换多头视角，感受 Q/K/V 如何捕捉语言依存关系" },
+                  { href: "/visualize/positional-encoding", icon: "≋", title: "位置编码热图", desc: "点击热图格子查看 sin/cos 编码数值，切换曲线模式观察不同频率维度" },
+                ].map(({ href, icon, title, desc }) => (
+                  <Link
+                    key={href}
+                    href={href}
+                    className="flex items-center gap-4 p-4 rounded-xl border transition-all hover:border-purple-500/50 hover:bg-white/[0.02] group"
+                    style={{ borderColor: "var(--color-border)", backgroundColor: "var(--color-surface)" }}
+                  >
+                    <div className="text-xl shrink-0" style={{ color: "var(--color-accent)" }}>{icon}</div>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-semibold text-sm" style={{ color: "var(--color-text)" }}>{title}</div>
+                      <div className="text-xs mt-0.5" style={{ color: "var(--color-text-muted)" }}>{desc}</div>
+                    </div>
+                    <span className="text-sm opacity-0 group-hover:opacity-100 transition-opacity shrink-0" style={{ color: "var(--color-accent)" }}>进入 →</span>
+                  </Link>
+                ))}
+              </div>
+            )}
+            {slug === "04" && (
               <Link
-                href="/visualize/backprop"
+                href="/visualize/tokenizer"
                 className="flex items-center gap-4 mt-10 p-5 rounded-xl border transition-all hover:border-purple-500/50 hover:bg-white/[0.02] group"
                 style={{ borderColor: "var(--color-border)", backgroundColor: "var(--color-surface)" }}
               >
-                <div className="text-2xl shrink-0" style={{ color: "var(--color-accent)" }}>⟳</div>
+                <div className="text-2xl shrink-0" style={{ color: "var(--color-accent)" }}>⌁</div>
                 <div className="flex-1 min-w-0">
                   <div className="text-xs mb-1" style={{ color: "var(--color-text-muted)" }}>配套交互可视化</div>
-                  <div className="font-semibold text-sm" style={{ color: "var(--color-text)" }}>反向传播梯度流动</div>
+                  <div className="font-semibold text-sm" style={{ color: "var(--color-text)" }}>BPE 分词过程</div>
                   <div className="text-xs mt-0.5" style={{ color: "var(--color-text-muted)" }}>
-                    逐步演示前向传播 → 损失计算 → 链式求导 → 权重更新
+                    逐步演示字符对合并操作，观察子词词表如何从字符级一步步构建
                   </div>
                 </div>
                 <span className="text-sm opacity-0 group-hover:opacity-100 transition-opacity shrink-0" style={{ color: "var(--color-accent)" }}>
@@ -99,24 +146,66 @@ export default async function ChapterPage({ params }: { params: Promise<{ chapte
                 </span>
               </Link>
             )}
-            {slug === "03" && (
+            {slug === "06" && (
               <Link
-                href="/visualize/attention"
+                href="/visualize/lora"
                 className="flex items-center gap-4 mt-10 p-5 rounded-xl border transition-all hover:border-purple-500/50 hover:bg-white/[0.02] group"
                 style={{ borderColor: "var(--color-border)", backgroundColor: "var(--color-surface)" }}
               >
-                <div className="text-2xl shrink-0" style={{ color: "var(--color-accent)" }}>◎</div>
+                <div className="text-2xl shrink-0" style={{ color: "var(--color-accent)" }}>⊗</div>
                 <div className="flex-1 min-w-0">
                   <div className="text-xs mb-1" style={{ color: "var(--color-text-muted)" }}>配套交互可视化</div>
-                  <div className="font-semibold text-sm" style={{ color: "var(--color-text)" }}>Transformer 自注意力机制</div>
+                  <div className="font-semibold text-sm" style={{ color: "var(--color-text)" }}>LoRA 低秩矩阵分解</div>
                   <div className="text-xs mt-0.5" style={{ color: "var(--color-text-muted)" }}>
-                    悬停探索注意力热图，切换多头视角，感受 Q/K/V 如何捕捉语言依存关系
+                    拖动秩 r 滑块，直观对比参数量节省与矩阵热图，理解低秩分解原理
                   </div>
                 </div>
                 <span className="text-sm opacity-0 group-hover:opacity-100 transition-opacity shrink-0" style={{ color: "var(--color-accent)" }}>
                   进入可视化 →
                 </span>
               </Link>
+            )}
+            {slug === "07" && (
+              <Link
+                href="/visualize/rlhf"
+                className="flex items-center gap-4 mt-10 p-5 rounded-xl border transition-all hover:border-purple-500/50 hover:bg-white/[0.02] group"
+                style={{ borderColor: "var(--color-border)", backgroundColor: "var(--color-surface)" }}
+              >
+                <div className="text-2xl shrink-0" style={{ color: "var(--color-accent)" }}>⚖</div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-xs mb-1" style={{ color: "var(--color-text-muted)" }}>配套交互可视化</div>
+                  <div className="font-semibold text-sm" style={{ color: "var(--color-text)" }}>RLHF 三阶段流程</div>
+                  <div className="text-xs mt-0.5" style={{ color: "var(--color-text-muted)" }}>
+                    逐步演示 SFT → 奖励模型 → PPO 对齐，揭示 ChatGPT 的训练过程
+                  </div>
+                </div>
+                <span className="text-sm opacity-0 group-hover:opacity-100 transition-opacity shrink-0" style={{ color: "var(--color-accent)" }}>
+                  进入可视化 →
+                </span>
+              </Link>
+            )}
+            {slug === "08" && (
+              <div className="mt-10 space-y-3">
+                <div className="text-xs font-medium mb-1" style={{ color: "var(--color-text-muted)" }}>配套交互可视化</div>
+                {[
+                  { href: "/visualize/sampling", icon: "🎲", title: "LLM 采样策略", desc: "实时调整 Temperature / Top-K / Top-P，观察概率分布变化并模拟采样" },
+                  { href: "/visualize/kv-cache", icon: "▣", title: "KV Cache 推理加速", desc: "动画对比有无缓存时的计算量，直观理解自回归推理加速原理" },
+                ].map(({ href, icon, title, desc }) => (
+                  <Link
+                    key={href}
+                    href={href}
+                    className="flex items-center gap-4 p-4 rounded-xl border transition-all hover:border-purple-500/50 hover:bg-white/[0.02] group"
+                    style={{ borderColor: "var(--color-border)", backgroundColor: "var(--color-surface)" }}
+                  >
+                    <div className="text-xl shrink-0" style={{ color: "var(--color-accent)" }}>{icon}</div>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-semibold text-sm" style={{ color: "var(--color-text)" }}>{title}</div>
+                      <div className="text-xs mt-0.5" style={{ color: "var(--color-text-muted)" }}>{desc}</div>
+                    </div>
+                    <span className="text-sm opacity-0 group-hover:opacity-100 transition-opacity shrink-0" style={{ color: "var(--color-accent)" }}>进入 →</span>
+                  </Link>
+                ))}
+              </div>
             )}
             {slug === "09" && (
               <Link
