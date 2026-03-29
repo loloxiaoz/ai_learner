@@ -110,6 +110,7 @@ export default async function ChapterPage({ params }: { params: Promise<{ chapte
                 {[
                   { href: "/visualize/attention", icon: "◎", title: "Transformer 自注意力机制", desc: "悬停探索注意力热图，切换多头视角，感受 Q/K/V 如何捕捉语言依存关系" },
                   { href: "/visualize/positional-encoding", icon: "≋", title: "位置编码热图", desc: "点击热图格子查看 sin/cos 编码数值，切换曲线模式观察不同频率维度" },
+                  { href: "/visualize/transformer-flow", icon: "↕", title: "Transformer 完整数据流", desc: "逐层点击展示 Token 从 Embedding 到输出 Logits 的前向传播完整路径" },
                 ].map(({ href, icon, title, desc }) => (
                   <Link
                     key={href}
@@ -128,23 +129,24 @@ export default async function ChapterPage({ params }: { params: Promise<{ chapte
               </div>
             )}
             {slug === "04" && (
-              <Link
-                href="/visualize/tokenizer"
-                className="flex items-center gap-4 mt-10 p-5 rounded-xl border transition-all hover:border-purple-500/50 hover:bg-white/[0.02] group"
-                style={{ borderColor: "var(--color-border)", backgroundColor: "var(--color-surface)" }}
-              >
-                <div className="text-2xl shrink-0" style={{ color: "var(--color-accent)" }}>⌁</div>
-                <div className="flex-1 min-w-0">
-                  <div className="text-xs mb-1" style={{ color: "var(--color-text-muted)" }}>配套交互可视化</div>
-                  <div className="font-semibold text-sm" style={{ color: "var(--color-text)" }}>BPE 分词过程</div>
-                  <div className="text-xs mt-0.5" style={{ color: "var(--color-text-muted)" }}>
-                    逐步演示字符对合并操作，观察子词词表如何从字符级一步步构建
-                  </div>
-                </div>
-                <span className="text-sm opacity-0 group-hover:opacity-100 transition-opacity shrink-0" style={{ color: "var(--color-accent)" }}>
-                  进入可视化 →
-                </span>
-              </Link>
+              <div className="mt-10 space-y-3">
+                <div className="text-xs font-medium mb-1" style={{ color: "var(--color-text-muted)" }}>配套交互可视化</div>
+                {[
+                  { href: "/visualize/tokenizer", icon: "⌁", title: "BPE 分词过程", desc: "逐步演示字符对合并操作，观察子词词表如何从字符级一步步构建" },
+                  { href: "/visualize/word-embedding", icon: "✦", title: "词向量语义空间", desc: "2D 语义聚类散点图，演示 king−man+woman=queen 向量类比运算" },
+                ].map(({ href, icon, title, desc }) => (
+                  <Link key={href} href={href}
+                    className="flex items-center gap-4 p-4 rounded-xl border transition-all hover:border-purple-500/50 hover:bg-white/[0.02] group"
+                    style={{ borderColor: "var(--color-border)", backgroundColor: "var(--color-surface)" }}>
+                    <div className="text-xl shrink-0" style={{ color: "var(--color-accent)" }}>{icon}</div>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-semibold text-sm" style={{ color: "var(--color-text)" }}>{title}</div>
+                      <div className="text-xs mt-0.5" style={{ color: "var(--color-text-muted)" }}>{desc}</div>
+                    </div>
+                    <span className="text-sm opacity-0 group-hover:opacity-100 transition-opacity shrink-0" style={{ color: "var(--color-accent)" }}>进入 →</span>
+                  </Link>
+                ))}
+              </div>
             )}
             {slug === "06" && (
               <Link
@@ -190,6 +192,7 @@ export default async function ChapterPage({ params }: { params: Promise<{ chapte
                 {[
                   { href: "/visualize/sampling", icon: "🎲", title: "LLM 采样策略", desc: "实时调整 Temperature / Top-K / Top-P，观察概率分布变化并模拟采样" },
                   { href: "/visualize/kv-cache", icon: "▣", title: "KV Cache 推理加速", desc: "动画对比有无缓存时的计算量，直观理解自回归推理加速原理" },
+                  { href: "/visualize/quantization", icon: "▦", title: "模型量化精度对比", desc: "切换 FP32/INT8/INT4，对比权重分布变化与 7B/70B 模型显存占用" },
                 ].map(({ href, icon, title, desc }) => (
                   <Link
                     key={href}
@@ -219,6 +222,25 @@ export default async function ChapterPage({ params }: { params: Promise<{ chapte
                   <div className="font-semibold text-sm" style={{ color: "var(--color-text)" }}>RAG 检索增强生成全流程</div>
                   <div className="text-xs mt-0.5" style={{ color: "var(--color-text-muted)" }}>
                     可视化向量空间语义检索，演示 Embedding → 检索 → 增强 → 生成完整链路
+                  </div>
+                </div>
+                <span className="text-sm opacity-0 group-hover:opacity-100 transition-opacity shrink-0" style={{ color: "var(--color-accent)" }}>
+                  进入可视化 →
+                </span>
+              </Link>
+            )}
+            {slug === "10" && (
+              <Link
+                href="/visualize/moe"
+                className="flex items-center gap-4 mt-10 p-5 rounded-xl border transition-all hover:border-purple-500/50 hover:bg-white/[0.02] group"
+                style={{ borderColor: "var(--color-border)", backgroundColor: "var(--color-surface)" }}
+              >
+                <div className="text-2xl shrink-0" style={{ color: "var(--color-accent)" }}>⑃</div>
+                <div className="flex-1 min-w-0">
+                  <div className="text-xs mb-1" style={{ color: "var(--color-text-muted)" }}>配套交互可视化</div>
+                  <div className="font-semibold text-sm" style={{ color: "var(--color-text)" }}>MoE 混合专家路由</div>
+                  <div className="text-xs mt-0.5" style={{ color: "var(--color-text-muted)" }}>
+                    选择不同 Token 观察路由动态分配，对比稀疏激活与 Dense 模型的参数效率
                   </div>
                 </div>
                 <span className="text-sm opacity-0 group-hover:opacity-100 transition-opacity shrink-0" style={{ color: "var(--color-accent)" }}>
