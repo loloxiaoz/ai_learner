@@ -156,10 +156,7 @@ export async function getChapterQuizContent(slug: string): Promise<string> {
   return markdownToHtml(raw, slug);
 }
 
-export function getChapterHeadings(slug: string): Heading[] {
-  const chapter = getChapterBySlug(slug);
-  if (!chapter) return [];
-  const raw = fs.readFileSync(path.join(CONTENT_ROOT, chapter.dirName, FILE_CONTENT), "utf-8");
+function extractHeadings(raw: string): Heading[] {
   const { content } = matter(raw);
   const headings: Heading[] = [];
   for (const line of content.split("\n")) {
@@ -169,4 +166,18 @@ export function getChapterHeadings(slug: string): Heading[] {
     if (m3) { headings.push({ id: slugify(m3[1]), text: m3[1].trim(), level: 3 }); }
   }
   return headings;
+}
+
+export function getChapterHeadings(slug: string): Heading[] {
+  const chapter = getChapterBySlug(slug);
+  if (!chapter) return [];
+  const raw = fs.readFileSync(path.join(CONTENT_ROOT, chapter.dirName, FILE_CONTENT), "utf-8");
+  return extractHeadings(raw);
+}
+
+export function getChapterQuizHeadings(slug: string): Heading[] {
+  const chapter = getChapterBySlug(slug);
+  if (!chapter) return [];
+  const raw = fs.readFileSync(path.join(CONTENT_ROOT, chapter.dirName, FILE_QUIZ), "utf-8");
+  return extractHeadings(raw);
 }
