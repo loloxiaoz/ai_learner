@@ -32,7 +32,8 @@ export default function HomePage() {
         </h1>
 
         <p className="text-xl mb-4 max-w-2xl mx-auto" style={{ color: "var(--color-text-muted)" }}>
-          10 章系统课程，涵盖深度学习原理、Transformer 架构、大模型训练与微调、RAG 与 Agent。
+          10 章系统课程，涵盖深度学习原理、Transformer 架构、
+          <br />大模型训练与微调、RAG 与 Agent。
         </p>
         <p className="text-base mb-10" style={{ color: "var(--color-text-muted)" }}>
           内容干货 · 进度可视化 · 理解可验证 · 完全免费开源
